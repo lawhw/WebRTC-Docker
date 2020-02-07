@@ -36,7 +36,8 @@ RUN ./install-build-deps-android.sh
 
 # depot tools
 WORKDIR /
-RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+#RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+RUN git clone https://gitee.com/ETAS/depot_tools
 
 RUN echo 'export PATH=$PATH:/depot_tools' >> /root/.bashrc
 COPY run.sh /
