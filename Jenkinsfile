@@ -11,7 +11,7 @@ pipeline {
 
     environment {
 		GIT_TAG = sh(returnStdout: true,script: 'git describe --tags --always').trim()
-        PROJECT_NAME = "${env.JOB_NAME}" 
+        PROJECT_NAME = "webrtc-server" //"${env.JOB_NAME}" 
 		
 		//BRANCH_SHORTNAME = sh(returnStdout: true,script: 'git describe --all').trim()
 
