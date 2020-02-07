@@ -68,10 +68,10 @@ pipeline {
 				    def CURL_CMD=''
                     def CURL_RESULT=''
                     //TODO：prolist需要修改成对应的项目模块和路径
-					def prolist = ['escloud-mqtt:escloud-mqtt/']
+					def prolist = ['apprtc-server:apprtc-server/']
 					//TODO：SERVER_NAME需要修改成对应的Kuboard的pod值
-			        def SERVER_NAME = "svc-escloud-mqtt"
-			        def KUBOARD_URL = "http://10.13.32.94:32567/k8s-api/apis/apps/v1/namespaces/es-cloud/deployments/${SERVER_NAME}"
+			        def SERVER_NAME = "svc-apprtc-server"
+			        def KUBOARD_URL = "http://10.13.32.94:32567/k8s-api/apis/apps/v1/namespaces/video/deployments/${SERVER_NAME}"
                     def WEIXIN_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key='
                     def WEIXIN_DATA = ''
 			        
@@ -84,7 +84,7 @@ pipeline {
 						
 						docker.withRegistry('http://registry.apps.es1688.k8s.local', "${REGISTRY_CREDENTIALS_ID}") {
 						    //Docker打包推送到docker仓库
-							def CUR_Docker = docker.build("${PROJECT_NAME}-${ENV_NAME}/${proj_name}:${TAG_NAME}", "-f ${proj_path}/src/main/docker/Dockerfile ${proj_path}/target")
+							def CUR_Docker = docker.build("${PROJECT_NAME}-${ENV_NAME}/${proj_name}:${TAG_NAME}", "-f ${proj_path}/Dockerfile ${proj_path}")
 							CUR_Docker.push()
 							CUR_Docker.push('latest')							//发布应用
 							IMAGE_NAME = "registry.apps.es1688.k8s.local/${PROJECT_NAME}-${ENV_NAME}/${proj_name}:${TAG_NAME}"
