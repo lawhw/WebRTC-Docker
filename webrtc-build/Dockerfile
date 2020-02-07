@@ -16,7 +16,7 @@ RUN apt-get install -y vim python-pip polipo wget git gnupg flex bison gperf bui
 RUN pip install shadowsocks
 
 # libsodium
-RUN wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.16.tar.gz
+RUN wget https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-1.0.16.tar.gz
 RUN tar zxf libsodium-1.0.16.tar.gz
 WORKDIR /libsodium-1.0.16
 RUN ./configure && make && make install
