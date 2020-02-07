@@ -31,7 +31,11 @@ RUN tar -C /usr/local -xzf $GOLANG_TAR
 ENV PATH $PATH:/usr/local/go/bin
 ENV GOPATH /goWorkspace
 RUN mkdir -p $GOPATH/src
+RUN mkdir -p $GOPATH/src/golang.org/x
+WORKDIR $GOPATH/src/golang.org/x
+RUN git clone https://github.com/golang/net.git
 
+WORKDIR /
 # Google App Engine
 ENV GAE_ZIP google_appengine_$GAE_VER.zip
 RUN wget https://storage.googleapis.com/appengine-sdks/featured/$GAE_ZIP
